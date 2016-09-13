@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: eureka-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/atliwen/MySpringCloudTest
+          search-paths:
+            - eureka-config/config-repo
+          username: 499014099@qq.com
+          password: qq123123
+server:
+  port: 9004
+  
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://10.10.12.27:9001/eureka/,http://10.10.12.27:9002/eureka/,http://10.10.12.27:9003/eureka/
+      

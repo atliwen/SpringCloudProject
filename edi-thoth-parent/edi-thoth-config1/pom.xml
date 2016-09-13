@@ -6,7 +6,7 @@
 		<artifactId>edi-thoth-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>edi-thoth-config</artifactId>
+	<artifactId>edi-thoth-config1</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
