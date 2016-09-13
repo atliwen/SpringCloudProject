@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: edi_thoth_server1
+ 
+server:
+  port: 9001
+  
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://10.10.12.27:9001/eureka/,http://10.10.12.27:9002/eureka/,http://10.10.12.27:9003/eureka/

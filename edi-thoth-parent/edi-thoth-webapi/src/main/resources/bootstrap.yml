@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: Edi_thoth_webApi
+  cloud:
+    config:
+      uri: http://localhost:8601/
+      label: master
+      profile: dev
+      name: 
+server:
+  port: 7006
