@@ -14,12 +14,10 @@
 
 	<modules>
 		<module>edi-thoth-webapi</module>
-		<module>edi-thoth-server1</module>
-		<module>edi-thoth-server2</module>
-		<module>edi-thoth-server3</module>
 		<module>edi-thoth-config1</module> 
 		<module>edi-thoth-config2</module>
 		<module>edi-thoth-server</module>
+		<module>edi-thoth-config</module>
 	</modules>
 
 	<dependencies>
