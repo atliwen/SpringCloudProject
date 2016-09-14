@@ -19,6 +19,7 @@
 		<module>edi-thoth-server3</module>
 		<module>edi-thoth-config1</module> 
 		<module>edi-thoth-config2</module>
+		<module>edi-thoth-server</module>
 	</modules>
 
 	<dependencies>

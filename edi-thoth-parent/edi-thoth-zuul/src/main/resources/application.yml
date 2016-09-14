@@ -1,0 +1,8 @@
+
+zuul:
+  routes:
+    api-a-url: 
+      path: /api-a/**
+      service-id: client-server
+server:
+  port: 5556

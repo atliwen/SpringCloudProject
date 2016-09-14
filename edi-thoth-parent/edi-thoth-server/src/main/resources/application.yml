@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: edi_thoth_server
+  profiles:
+    include: defaultEureka
+server:
+  port: 9001
+---
+spring.profiles: s2
+spring.profiles.include: defaultEureka
+server:
+  port: 9002
+---
+spring.profiles: s3
+spring.profiles.include: defaultEureka
+server:
+  port: 9003
+---
+spring:
+  profiles: defaultEureka
+eureka:
+#  server:
+#    enable-self-preservation: false
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://10.10.12.27:9001/eureka/,http://10.10.12.27:9002/eureka/,http://10.10.12.27:9003/eureka/
