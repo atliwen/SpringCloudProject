@@ -4,14 +4,16 @@ spring:
   cloud:
     config:
       profile: dev
-#      uri: http://localhost:9004/
       discovery:
-        enabled: false
-        service-id: eureka-config 
-
-  
+        enabled: true
+        service-id: edi_thoth_config
 eureka:
   client:
     serviceUrl:
       defaultZone: http://10.10.12.27:9001/eureka/,http://10.10.12.27:9002/eureka/,http://10.10.12.27:9003/eureka/
- 
+  instance:
+    lease-renewal-interval-in-seconds: 1 
+
+server:
+  port: 5557
+    

@@ -1,6 +1,10 @@
+info:
+  contact:
+    appName: edi_thoth_config
+
 spring:
   application:
-    name: eureka-config
+    name: edi_thoth_config
   cloud:
     config:
       server:
@@ -12,7 +16,8 @@ spring:
           password: qq123123
 server:
   port: 9004
-  
+
+#spring.profiles.active
 eureka:
   instance:
 #    lease-expiration-duration-in-seconds: 2
@@ -22,6 +27,7 @@ eureka:
     serviceUrl:
       defaultZone: http://10.10.12.27:9001/eureka/,http://10.10.12.27:9002/eureka/,http://10.10.12.27:9003/eureka/
       
+
 ---
 spring:
   profiles: c2
