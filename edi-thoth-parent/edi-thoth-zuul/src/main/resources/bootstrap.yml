@@ -1,6 +1,6 @@
 spring:
   application:
-    name: Edi_thoth_webApi
+    name: edi_thoth_zull
   cloud:
     config:
       profile: dev

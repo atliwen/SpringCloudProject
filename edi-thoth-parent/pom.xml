@@ -18,6 +18,7 @@
 		<module>edi-thoth-config2</module>
 		<module>edi-thoth-server</module>
 		<module>edi-thoth-config</module>
+		<module>edi-thoth-clientTest</module>
 	</modules>
 
 	<dependencies>

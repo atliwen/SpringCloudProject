@@ -1,4 +1,8 @@
-
+zuul:
+  routes: 
+    api-a-url: 
+      path: /api-a/**
+      service-id: client-server
       
 eureka:
   client:

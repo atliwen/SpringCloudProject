@@ -9,9 +9,9 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/atliwen/MySpringCloudTest
+          uri: https://github.com/atliwen/SpringCloudProject
           search-paths:
-            - eureka-config/config-repo
+            - edi-thoth-parent/config-repo
           username: 499014099@qq.com
           password: qq123123
 server:
