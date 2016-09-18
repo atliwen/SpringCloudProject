@@ -3,3 +3,6 @@ zuul:
     api-a-url: 
       path: /api-a/**
       service-id: client-server2
+    api-b-url: 
+      path: /api-b/**
+      service-id: client-server1
