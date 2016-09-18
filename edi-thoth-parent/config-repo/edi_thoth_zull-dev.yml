@@ -5,4 +5,4 @@ zuul:
       service-id: client-server2
     api-b-url: 
       path: /api-b/**
-      service-id: client-server1
+      service-id: client-server
