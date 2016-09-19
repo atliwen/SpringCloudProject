@@ -1,0 +1,40 @@
+info:
+  contact:
+    appName: edi_thoth_config
+
+spring:
+  application:
+    name: edi_thoth_config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/atliwen/SpringCloudProject
+          search-paths:
+            - edi-thoth-parent/config-repo
+          username: 499014099@qq.com
+          password: qq123123
+server:
+  port: 9004
+
+#spring.profiles.active
+eureka:
+  instance:
+#    lease-expiration-duration-in-seconds: 2
+#    lease-renewal-interval-in-seconds: 1
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://10.10.12.27:9001/eureka/,http://10.10.12.27:9002/eureka/,http://10.10.12.27:9003/eureka/
+      
+
+---
+spring:
+  profiles: c2
+server:
+  port: 9005
+---
+spring:
+  profiles: c3
+server:
+  port: 9006
