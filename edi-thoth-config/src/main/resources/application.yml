@@ -13,7 +13,7 @@ spring:
           search-paths:
             - edi-thoth-parent/config-repo
           username: 499014099@qq.com
-          password: qq123123
+          password: 1111111
 server:
   port: 9004
 
