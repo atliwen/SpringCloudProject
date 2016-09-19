@@ -28,7 +28,7 @@ public class UserMongodbTest
 	@Test
 	public void Test_mq() throws Exception
 	{
-		mq.send("orTest", "a", "aa");
+		// mq.send("orTest", "a", "aa");
 	}
 
 	@Test
@@ -40,7 +40,7 @@ public class UserMongodbTest
 		listip.add("10.10.12.27");
 		listip.add("124.127.41.130");
 		u.setIps(listip);
-		u.setCheckID("client-server");
+		u.setCheckID("client-OrderAServer");
 		u.setClientFlag("测试数据");
 
 		cu.save(u);
