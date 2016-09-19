@@ -13,8 +13,3 @@ eureka:
       defaultZone: http://10.10.12.27:9001/eureka/,http://10.10.12.27:9002/eureka/,http://10.10.12.27:9003/eureka/
   instance:
     lease-renewal-interval-in-seconds: 1 
-
-
-info:
-  contact:
-    appName: client-OrderAServer
