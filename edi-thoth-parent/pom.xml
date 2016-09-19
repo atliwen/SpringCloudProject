@@ -57,7 +57,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<modules>
-		<module>edi-thoth-clientOrderA</module>
-	</modules>
+	 
 </project>
