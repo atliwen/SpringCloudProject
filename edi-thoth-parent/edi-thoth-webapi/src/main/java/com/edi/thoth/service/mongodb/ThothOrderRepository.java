@@ -1,4 +1,4 @@
-package com.edi.thoth.service;
+package com.edi.thoth.service.mongodb;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;

@@ -5,8 +5,8 @@
     <artifactId>edi-thoth-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>edi-thoth-clientTest2</artifactId>
-  <dependencies>
+  <artifactId>edi-thoth-clientOrder</artifactId>
+ <dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>

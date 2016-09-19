@@ -20,6 +20,7 @@
 		<module>edi-thoth-config</module>
 		<module>edi-thoth-clientTest</module>
 		<module>edi-thoth-clientTest2</module>
+		<module>edi-thoth-clientOrder</module>
 	</modules>
 
 	<dependencies>

@@ -15,5 +15,5 @@ eureka:
     lease-renewal-interval-in-seconds: 1 
 
 server:
-  port: 5557
+  port: 9007
     

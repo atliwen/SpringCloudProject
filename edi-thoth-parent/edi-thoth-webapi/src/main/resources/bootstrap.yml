@@ -1,11 +1,14 @@
 spring:
   application:
     name: Edi_thoth_webApi
-  cloud:
-    config:
-      uri: http://localhost:8601/
-      label: master
-      profile: dev
-      name: 
+
 server:
-  port: 7006
+  port: 9008
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://10.10.12.27:9001/eureka/,http://10.10.12.27:9002/eureka/,http://10.10.12.27:9003/eureka/
+        
