@@ -5,13 +5,13 @@
 	<artifactId>edi-thoth-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<parent> 
+	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.4.0.RELEASE</version>
-		<relativePath />
 	</parent>
- 
+
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -37,6 +37,10 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 	</dependencies>
+
+	<properties>
+		<rocketmq.version>3.2.6</rocketmq.version>
+	</properties>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -46,9 +50,22 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+
+			<dependency>
+				<groupId>com.alibaba.rocketmq</groupId>
+				<artifactId>rocketmq-client</artifactId>
+				<version>${rocketmq.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba.rocketmq</groupId>
+				<artifactId>rocketmq-all</artifactId>
+				<version>${rocketmq.version}</version>
+				<type>pom</type>
+			</dependency>
+
 		</dependencies>
-	</dependencyManagement> 
-	 
+	</dependencyManagement>
 	<build>
 		<plugins>
 			<plugin>
@@ -56,5 +73,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build> 
+	</build>
+
 </project>
