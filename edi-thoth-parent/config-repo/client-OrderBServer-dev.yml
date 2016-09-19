@@ -1,0 +1,17 @@
+info:
+  contact:
+    appName: client-OrderAServer
+
+server:
+  port: 9012
+
+---
+spring:
+  profiles: c2
+server:
+  port: 9013
+---
+spring:
+  profiles: c3
+server:
+  port: 9014
