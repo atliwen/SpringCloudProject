@@ -12,6 +12,8 @@
 		<relativePath />
 	</parent>
 
+
+
 	<modules>
 		<module>edi-thoth-webapi</module>
 		<module>edi-thoth-config1</module> 

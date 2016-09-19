@@ -16,4 +16,7 @@ eureka:
 
 server:
   port: 9007
-    
+
+info:
+  contact:
+    appName: edi_thoth_zull

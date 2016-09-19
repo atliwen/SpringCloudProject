@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 /**
  * <p>Title: CallApi </p>
  * <p>@Description: 通用调用  Api  </p>
@@ -31,11 +33,21 @@ public class CallApi
 	 * @param body		   数据
 	 * @return
 	 */
+	@HystrixCommand(fallbackMethod = "bodyApiback")
 	public String bodyApi(String function, String body)
 	{
 		String url = "http://" + serverID + "/" + function;
-
 		return restTemplate.postForEntity(url, body, String.class).getBody();
 	}
 
+	/**
+	 * 断路器
+	 * @param function
+	 * @param body
+	 * @return
+	 */
+	public String bodyApiback(String function, String body)
+	{
+		return "超时";
+	}
 }
