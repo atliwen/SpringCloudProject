@@ -2,8 +2,17 @@ package com.thoth.web;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.thoth.Interface.webapi.OrderApiInterface;
+
+/**
+* <p>Title: OrderController </p>
+* <p>@Description: webapi 项目   客户B  OrderApi 接口方法实现类 </p>
+* <p>Company:  </p>
+* @author 李文
+* @date   2016年9月19日 下午3:39:38 
+*/
 @RestController
-public class OrderController implements ThothClientInterface
+public class OrderController implements OrderApiInterface
 {
 
 	@Override
