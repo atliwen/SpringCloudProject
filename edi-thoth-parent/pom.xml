@@ -11,20 +11,7 @@
 		<version>1.4.0.RELEASE</version>
 		<relativePath />
 	</parent>
-
-
-
-	<modules>
-		<module>edi-thoth-webapi</module>
-		<module>edi-thoth-config1</module> 
-		<module>edi-thoth-config2</module>
-		<module>edi-thoth-server</module>
-		<module>edi-thoth-config</module>
-		<module>edi-thoth-clientTest</module>
-		<module>edi-thoth-clientTest2</module>
-		<module>edi-thoth-clientOrder</module>
-	</modules>
-
+ 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
