@@ -1,7 +1,10 @@
 spring:
   application:
     name: Edi_thoth_webApi
-
+info:
+  contact:
+    appName: Edi_thoth_webApi
+    author: atliwen
 server:
   port: 9008
 
