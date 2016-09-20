@@ -14,7 +14,7 @@ eureka:
 info:
   contact:
     appName: edi_thoth_server
-
+    author: atliwen
 ---
 spring:
   profiles: s2
