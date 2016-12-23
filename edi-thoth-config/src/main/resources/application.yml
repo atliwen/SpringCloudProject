@@ -2,6 +2,9 @@ info:
   contact:
     appName: edi_thoth_config
     author: atliwen
+
+gitpassword: qq123123
+
 spring:
   application:
     name: edi_thoth_config
@@ -13,7 +16,7 @@ spring:
           search-paths:
             - edi-thoth-parent/config-repo
           username: 499014099@qq.com
-          password: 1111111
+          password: ${gitpassword}
 server:
   port: 9004
 
@@ -22,12 +25,10 @@ eureka:
   instance:
 #    lease-expiration-duration-in-seconds: 2
 #    lease-renewal-interval-in-seconds: 1
-    hostname: localhost
+    hostname: edithothconfig
   client:
     serviceUrl:
-      defaultZone: http://10.10.12.27:9001/eureka/,http://10.10.12.27:9002/eureka/,http://10.10.12.27:9003/eureka/
-      
-
+      defaultZone: http://edithothserver:9001/eureka/
 ---
 spring:
   profiles: c2
