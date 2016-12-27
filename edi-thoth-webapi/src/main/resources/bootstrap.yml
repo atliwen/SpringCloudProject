@@ -1,17 +1,21 @@
 spring:
   application:
-    name: Edi_thoth_webApi
+    name: edi_thoth_webApi
+  cloud:
+    config:
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: edi_thoth_config
 info:
   contact:
-    appName: Edi_thoth_webApi
+    appName: edi_thoth_webApi
     author: atliwen
-server:
-  port: 9008
-
 eureka:
   instance:
-    hostname: localhost
+    hostname: edithothwebApi
+    lease-renewal-interval-in-seconds: 1
   client:
     serviceUrl:
-      defaultZone: http://10.10.12.27:9001/eureka/,http://10.10.12.27:9002/eureka/,http://10.10.12.27:9003/eureka/
+      defaultZone: http://edithothserver:9001/eureka/
         

@@ -1,9 +1,9 @@
 package com.edi.thoth.service;
 
-import java.io.UnsupportedEncodingException;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.edi.thoth.domain.ClientUsers;
+import com.edi.thoth.domain.ThothOrder;
+import com.edi.thoth.service.mongodb.ClientUsersRepository;
+import com.edi.thoth.service.mongodb.ThothOrderRepository;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.edi.thoth.domain.ClientUsers;
-import com.edi.thoth.domain.ThothOrder;
-import com.edi.thoth.service.mongodb.ClientUsersRepository;
-import com.edi.thoth.service.mongodb.ThothOrderRepository;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 
 @Service
 public class OrderApiService
@@ -71,6 +69,7 @@ public class OrderApiService
 				return callApi.bodyApi("failure", data);// 调用 失败 API
 			}
 			// 保存数据
+			//TODO 这里可以取消    通过MQ 后续处理
 			ThothOrder thothOrder = new ThothOrder();
 			thothOrder.setClientFlag(users.getClientFlag());
 			thothOrder.setDataOrder(data);
