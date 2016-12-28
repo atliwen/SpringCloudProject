@@ -1,6 +1,6 @@
 # SpringCloudProject
 
-Spring docker 启动示例项目 
+Spring docker 启动
     
     docker service create --name registry --publish 5000:5000 --mount type=bind,target=/var/lib/registry,source=/docker/ --constraint 'node.hostname==manager' --network cloud registry:2
     
