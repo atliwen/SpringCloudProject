@@ -1,5 +1,21 @@
 # SpringCloudProject
-Spring Cloud 示例项目 
+
+Spring docker 启动示例项目 
+    
+    docker service create --name registry --publish 5000:5000 --mount type=bind,target=/var/lib/registry,source=/docker/ --constraint 'node.hostname==manager' --network cloud registry:2
+    
+    docker service create --network cloud -p 9001:9001 --replicas 2 --name edithothserver localhost:5000/edi_thoth_server
+    
+    docker service create --network cloud -p 9004:9004 --replicas 1 --name edithothconfig localhost:5000/edi_thoth_config
+    
+    docker service create --network cloud -p 9007:9007 --replicas 1 --name edithothzull localhost:5000/edi-thoth-zuul
+    
+    docker service create --network cloud -p 9008:9008 --replicas 1 --name edithothwebapi localhost:5000/edi-thoth-webapi
+    
+    docker service create --network cloud --replicas 2 --name edithothclientordera localhost:5000/edi_thoth_clientordera
+    
+    docker service create --network cloud --replicas 2 --name edithothclientorderb localhost:5000/edi_thoth_clientorderb
+
 Spring Cloud 示例项目 
 
 	edi-thoth-server	注册中心
