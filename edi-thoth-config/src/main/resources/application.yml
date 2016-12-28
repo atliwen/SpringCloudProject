@@ -29,21 +29,6 @@ server:
 #spring.profiles.active
 
 eureka:
-  instance:
-#    lease-expiration-duration-in-seconds: 2
-#    lease-renewal-interval-in-seconds: 1
-    hostname: edithothconfig
   client:
     serviceUrl:
       defaultZone: http://edithothserver:9001/eureka/
-
----
-spring:
-  profiles: c2
-server:
-  port: 9005
----
-spring:
-  profiles: c3
-server:
-  port: 9006

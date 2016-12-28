@@ -13,7 +13,6 @@ info:
     author: atliwen
 eureka:
   instance:
-    hostname: edithothwebApi
     lease-renewal-interval-in-seconds: 1
   client:
     serviceUrl:

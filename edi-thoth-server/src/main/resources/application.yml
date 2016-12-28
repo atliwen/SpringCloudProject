@@ -4,10 +4,6 @@ spring:
 server:
   port: 9001
 eureka:
-#  server:
-#    enable-self-preservation: false
-  instance:
-    hostname: edithothserver
   client:
     serviceUrl:
       defaultZone: http://edithothserver:9001/eureka/
@@ -15,13 +11,3 @@ info:
   contact:
     appName: edi_thoth_server
     author: atliwen
----
-spring:
-  profiles: s2
-server:
-  port: 9002
----
-spring:
-  profiles: s3
-server:
-  port: 9003

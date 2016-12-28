@@ -1,5 +1,5 @@
 zuul:
   routes: 
-    webApi-url: 
+    webApiurl:
       path: /webApi/**
-      service-id: Edi_thoth_webApi
+      service-id: edi_thoth_webApi

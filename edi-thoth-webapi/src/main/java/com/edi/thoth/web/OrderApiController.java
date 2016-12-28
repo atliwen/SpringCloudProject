@@ -1,19 +1,13 @@
 package com.edi.thoth.web;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.edi.thoth.service.OrderApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.edi.thoth.service.OrderApiService;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 @RestController
 public class OrderApiController
@@ -26,6 +20,11 @@ public class OrderApiController
 	public ResponseEntity<String> saveOrder(HttpServletRequest request)
 	{
 		return ResponseEntity.ok(apiService.saveOrder(getParametrs(request), request));
+	}
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public ResponseEntity<String> saveOrderTest(@RequestParam String request)
+	{
+		return ResponseEntity.ok(request);
 	}
 
 	@RequestMapping(value = "/boby", method = RequestMethod.POST)
