@@ -13,7 +13,7 @@ info:
     author: atliwen
 eureka:
   instance:
-    lease-renewal-interval-in-seconds: 1
+    hostname: edithothwebapi
   client:
     serviceUrl:
       defaultZone: http://edithothserver:9001/eureka/
