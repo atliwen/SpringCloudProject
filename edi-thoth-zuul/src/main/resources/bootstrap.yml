@@ -13,7 +13,7 @@ eureka:
     serviceUrl:
       defaultZone: http://edithothserver:9001/eureka/
   instance:
-    lease-renewal-interval-in-seconds: 1 
+    hostname: edithothzull
 
 info:
   contact:
