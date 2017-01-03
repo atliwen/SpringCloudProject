@@ -32,3 +32,5 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://edithothserver:9001/eureka/
+  instance:
+    hostname: edithothconfig
