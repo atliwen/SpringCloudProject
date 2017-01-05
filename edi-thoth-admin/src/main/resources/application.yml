@@ -1,0 +1,18 @@
+#spring:
+#  boot:
+#    admin:
+#      url: http://10.10.12.27:9001
+
+server:
+  port: 9110
+spring:
+  application:
+    name: admin
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 10
+    hostname: edithothadmin
+  client:
+    registry-fetch-interval-seconds: 5
+    service-url:
+      defaultZone: http://edithothserver:9001/eureka/
