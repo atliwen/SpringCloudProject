@@ -1,5 +1,6 @@
 package com.thoth.web;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.thoth.Interface.webapi.OrderApiInterface;
@@ -41,6 +42,11 @@ public class OrderController implements OrderApiInterface
 	{
 		// 验证失败数据响应
 		return "验证失败";
+	}
+
+	@Override
+	public String dataConversion(@RequestBody String body) {
+		return null;
 	}
 
 }

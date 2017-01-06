@@ -44,4 +44,14 @@ public interface OrderApiInterface
 	 */
 	@RequestMapping(value = "Check/failure", method = RequestMethod.POST)
 	String checkfailure(@RequestBody String body);
+
+
+	/**
+	 *   数据转换方法
+	 * @param body
+	 * @return
+	 */
+	@RequestMapping(value = "data/conversion", method = RequestMethod.POST)
+	String dataConversion(@RequestBody String body);
+
 }

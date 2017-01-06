@@ -1,0 +1,38 @@
+# actuator 配置 info 提示信息
+info:
+  contact:
+    appName: mqconsumption
+endpoints:
+  info:
+    enabled: true
+  health:
+    sensitive: false
+  enabled: false
+server:
+  port: 9100
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://10.10.129.78:8761/eureka/,http://10.10.129.79:8761/eureka/,http://10.10.129.80:8761/eureka/
+spring:
+  data:
+    mongodb:
+      uri: mongodb://testuser:testuser@10.10.6.71:27017,10.10.6.72:27017,10.10.6.73:27017/testdb
+  application:
+    name: mqconsumption
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+hystrix.threadpool.default.coreSize: 100
+
+MQ:
+  COUNT: 6
+  consumerGroup: EdiSNCG
+  NamesrvAddr: 10.10.6.71:9876;10.10.6.72:9876
+  ProducerGroupName: EdiSNGroup
+  InstanceName: SNConsumerGroup
+
+

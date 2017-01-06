@@ -7,7 +7,10 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://edithothserver:9001/eureka/
+  instance:
+    hostname: edithothserver
 info:
   contact:
     appName: edi_thoth_server
     author: atliwen
+

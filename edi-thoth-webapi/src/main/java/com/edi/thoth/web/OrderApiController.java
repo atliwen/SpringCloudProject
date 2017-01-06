@@ -27,6 +27,12 @@ public class OrderApiController
 		return ResponseEntity.ok(request);
 	}
 
+	@RequestMapping(value = "/get", method = RequestMethod.GET)
+	public ResponseEntity<String> saveGetOrder(HttpServletRequest request)
+	{
+		return ResponseEntity.ok(apiService.saveOrder(getParametrs(request), request));
+	}
+
 	@RequestMapping(value = "/boby", method = RequestMethod.POST)
 	public ResponseEntity<String> saveOrder(@RequestBody String body, HttpServletRequest request)
 	{

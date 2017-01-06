@@ -12,8 +12,8 @@ info:
     appName: edi_thoth_webApi
     author: atliwen
 eureka:
-  instance:
-    hostname: edithothwebapi
+#  instance:
+#    hostname: edithothwebapi
   client:
     serviceUrl:
       defaultZone: http://edithothserver:9001/eureka/
