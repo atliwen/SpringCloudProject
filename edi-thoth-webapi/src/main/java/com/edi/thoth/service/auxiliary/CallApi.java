@@ -1,8 +1,9 @@
-package com.thoth.messagelistener;
+package com.edi.thoth.service.auxiliary;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.thoth.domain.RequestData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,7 +14,9 @@ import org.springframework.web.client.RestTemplate;
  * @author 李文
  * @date   2016年9月18日 下午2:03:13 
  */
+
 @Service
+@Scope("prototype")
 public class CallApi
 {
 

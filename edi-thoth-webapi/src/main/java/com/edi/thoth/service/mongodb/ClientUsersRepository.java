@@ -10,4 +10,7 @@ import com.edi.thoth.domain.ClientUsers;
 public interface ClientUsersRepository extends MongoRepository<ClientUsers, ObjectId>
 {
 	ClientUsers findByips(String ip);
+
+
+	ClientUsers findBycheckID(String serviceName);
 }

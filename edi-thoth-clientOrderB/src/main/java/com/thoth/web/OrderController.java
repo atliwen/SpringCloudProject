@@ -1,9 +1,8 @@
 package com.thoth.web;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.thoth.Interface.webapi.OrderApiInterface;
+import com.thoth.domain.RequestData;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
 * <p>Title: OrderController </p>
@@ -17,35 +16,35 @@ public class OrderController implements OrderApiInterface
 {
 
 	@Override
-	public String success(String body)
+	public String success(RequestData body)
 	{
 		// 成功 数据响应
 		return "成功";
 	}
 
 	@Override
-	public String failure(String body)
+	public String failure(RequestData body)
 	{
 		// 失败 数据响应
 		return "失败";
 	}
 
 	@Override
-	public String check(String body)
+	public String check(RequestData body)
 	{
 		// 验证数据 ok 是成功 否则 都是失败
 		return "ok";
 	}
 
 	@Override
-	public String checkfailure(String body)
+	public String checkfailure(RequestData body)
 	{
 		// 验证失败数据响应
 		return "验证失败";
 	}
 
 	@Override
-	public String dataConversion(@RequestBody String body) {
+	public String dataConversion(RequestData body) {
 		return null;
 	}
 

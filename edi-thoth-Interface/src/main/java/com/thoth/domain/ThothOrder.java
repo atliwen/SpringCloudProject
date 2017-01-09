@@ -14,17 +14,49 @@ public class ThothOrder
      */
     private String clientFlag;
 
+
+    /**
+     *  客户单号 （ 消费端 数据转换后 回填）
+     */
+    private String orderid;
+
+
+    /**
+     *  运单号  （ 消费端 数据转换后 回填）
+     */
+    private String mailNo;
+
+    /**
+     *  用户秘钥
+     */
+    private String verifyData;
+
+
+
     /**
      * 当前处理状态
      *
      *   0 接收数据 1 处理成功  9 thoth 处理失败 7 thoth响应 数据转换类型 8 微服务响应 数据转换类型
+     *
+     *   2 为从新处理
      */
     private Integer isSend;
 
     /**
      * 下单数据
      */
-    private String dataOrder;
+    private RequestData dataOrder;
+
+
+    /**
+     * 标准数据  （ 消费端 数据转换后 回填）
+     */
+    private String standardData;
+
+
+
+
+
     /**
      * 客户服务名称
      */
@@ -79,7 +111,7 @@ public class ThothOrder
      *
      * @return dataOrder 下单数据
      */
-    public String getDataOrder() {
+    public RequestData getDataOrder() {
         return dataOrder;
     }
 
@@ -88,7 +120,7 @@ public class ThothOrder
      *
      * @param dataOrder 下单数据
      */
-    public void setDataOrder(String dataOrder) {
+    public void setDataOrder(RequestData dataOrder) {
         this.dataOrder = dataOrder;
     }
 
@@ -134,5 +166,64 @@ public class ThothOrder
     @Id
     public void setId(String id) {
         this.id = id;
+    }
+
+
+    /**
+     * 获取  客户单号 （ 消费端 数据转换后 回填）
+     */
+    public String getOrderid() {
+        return this.orderid;
+    }
+
+    /**
+     * 设置  客户单号 （ 消费端 数据转换后 回填）
+     */
+    public void setOrderid(String orderid) {
+        this.orderid = orderid;
+    }
+
+    /**
+     * 获取  运单号  （ 消费端 数据转换后 回填）
+     */
+    public String getMailNo() {
+        return this.mailNo;
+    }
+
+    /**
+     * 设置  运单号  （ 消费端 数据转换后 回填）
+     */
+    public void setMailNo(String mailNo) {
+        this.mailNo = mailNo;
+    }
+
+
+    /**
+     * 获取 标准数据  （ 消费端 数据转换后 回填）
+     */
+    public String getStandardData() {
+        return this.standardData;
+    }
+
+    /**
+     * 设置 标准数据  （ 消费端 数据转换后 回填）
+     */
+    public void setStandardData(String standardData) {
+        this.standardData = standardData;
+    }
+
+
+    /**
+     * 获取  用户秘钥
+     */
+    public String getVerifyData() {
+        return this.verifyData;
+    }
+
+    /**
+     * 设置  用户秘钥
+     */
+    public void setVerifyData(String verifyData) {
+        this.verifyData = verifyData;
     }
 }

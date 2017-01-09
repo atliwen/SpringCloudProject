@@ -22,6 +22,7 @@ import java.util.List;
  * <p>Title: ConsumableMessageListenerConsumer </p>
  * <p>@Description:  内销    </p>
  * <p>Company:  </p>
+ *
  * @author 李文
  * @date 2016年9月25日 上午10:06:08
  */
@@ -57,34 +58,47 @@ public class ConsumableMessageListenerConsumer implements MessageListenerConsume
 
         callApi.setServerID(order.getCheckID());
         String thSnOrders = callApi.bodyApi("data/conversion", order.getDataOrder());
-        LOGGER.info(" 微服务 "+order.getCheckID()+" "+order.getId()+" 响应 的 消息 是：   " + thSnOrders);
+        LOGGER.info(" 微服务 " + order.getCheckID() + " " + order.getId() + " 响应 的 消息 是：   " + thSnOrders);
         long a = System.currentTimeMillis();
         ThSnOrder thSnOrder = null;
         try {
             thSnOrder = jsonMapper.readValue(thSnOrders, ThSnOrder.class);
         } catch (IOException e) {
-            LOGGER.error(" 微服务 "+order.getCheckID()+" "+order.getId()+" 响应 数据转换类型 异常    数据是 " + thSnOrders, e);
-            order.setRemark("  微服务响应 数据转换类型 ");
+            LOGGER.error(" 微服务 " + order.getCheckID() + " " + order.getId() + " 响应 数据转换类型 异常    数据是 " + thSnOrders, e);
+            order.setRemark("  微服务响应 数据转换类型 " + thSnOrders);
             order.setIsSend(8);
             tOrder.save(order);
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         }
 
-        List<ThSnOrder> list=new ArrayList<>();
-        list.add(thSnOrder);
-        ResultBean resultBean = feignServer.saveTask(list);
-        LOGGER.info(" 响应时间 " + (System.currentTimeMillis() - a));
 
+        //TODO  等待重构
+        List<ThSnOrder> list = new ArrayList<>();
+        list.add(thSnOrder);
+        ResultBean resultBean;
         try {
-            LOGGER.info(" 微服务 "+order.getCheckID()+" "+order.getId()+"  响应的数据  是：  " + jsonMapper.writeValueAsString(resultBean));
-        } catch (JsonProcessingException e) {
-            LOGGER.error(" 微服务 "+order.getCheckID()+" "+order.getId()+"   thoth   响应 数据转换类型 异常    数据是 " + thSnOrders, e);
-            order.setRemark("  thoth响应 数据转换类型 ");
-            order.setIsSend(7);
+            resultBean = feignServer.saveTask(list);
+            LOGGER.info(" 响应时间 " + (System.currentTimeMillis() - a));
+
+        } catch (Exception e) {
+            LOGGER.error(" 微服务 " + order.getCheckID() + " " + order.getId() + "thoth 响应 数据转换类型 异常    数据是 " + thSnOrders, e);
+            order.setRemark("  thoth 响应 数据转换类型 " + thSnOrders);
+            order.setIsSend(6);
+            // TODO 回填 客户单号   运单号
             tOrder.save(order);
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         }
-        return updateOrderState(order,resultBean);
+        try {
+            LOGGER.info(" 微服务 " + order.getCheckID() + " " + order.getId() + "  响应的数据  是：  " + jsonMapper.writeValueAsString(resultBean));
+        } catch (JsonProcessingException e) {
+            LOGGER.error(" 微服务 " + order.getCheckID() + " " + order.getId() + "   thoth   响应 数据转换类型 异常    数据是 " + thSnOrders, e);
+            order.setRemark("  thoth响应 数据转换类型 ");
+            order.setIsSend(7);
+            // TODO 回填 客户单号   运单号  标准数据
+            tOrder.save(order);
+            return ConsumeConcurrentlyStatus.RECONSUME_LATER;
+        }
+        return updateOrderState(order, resultBean);
 
     }
 
@@ -92,28 +106,27 @@ public class ConsumableMessageListenerConsumer implements MessageListenerConsume
     /**
      * 修改mongodb 数据状态
      */
-    private ConsumeConcurrentlyStatus  updateOrderState(ThothOrder order,ResultBean resultBean )
-    {
+    private ConsumeConcurrentlyStatus updateOrderState(ThothOrder order, ResultBean resultBean) {
         if ("E".equals(
                 resultBean.getStatus())) {
-            order.setIsSend(1);
-            order.setRemark("处理成功");
+            order.setIsSend(9);
+            order.setRemark("处理失败");
+            // TODO 回填 客户单号   运单号 标准数据
             tOrder.save(order);
-            LOGGER.info(" 微服务 "+order.getCheckID()+" "+order.getId()+"    处理失败 ");
+            LOGGER.info(" 微服务 " + order.getCheckID() + " " + order.getId() + "    处理失败 ");
             return ConsumeConcurrentlyStatus.RECONSUME_LATER;
         }
 
         if ("Y".equals(resultBean.getStatus()) || "UE".equals(resultBean.getStatus())) {
-            order.setIsSend(9);
-            order.setRemark("处理失败");
+            order.setIsSend(1);
+            order.setRemark("处理成功");
+            // TODO 回填 客户单号   运单号 标准数据
             tOrder.save(order);
-            LOGGER.info(" 微服务 "+order.getCheckID()+" "+order.getId()+"    处理成功 ");
+            LOGGER.info(" 微服务 " + order.getCheckID() + " " + order.getId() + "    处理成功 ");
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         }
         return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
     }
-
-
 
 
 }
