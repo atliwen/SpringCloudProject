@@ -10,5 +10,10 @@
 			<artifactId>spring-web</artifactId>
 			<version>4.3.2.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+			<version>1.4.1.RELEASE</version>
+		</dependency>
 	</dependencies>
 </project>

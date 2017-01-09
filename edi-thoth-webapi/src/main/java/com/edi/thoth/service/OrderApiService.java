@@ -6,6 +6,7 @@ import com.edi.thoth.service.mongodb.ThothOrderRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoth.domain.ThothOrder;
 import org.apache.commons.lang.StringUtils;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,10 +79,12 @@ public class OrderApiService
                 return callApi.bodyApi("Check/failure", data);// 调用验证失败 API
 
             try {
+
                 // 保存数据
                 // 这里只做数据 记录
-                // TODO 如后期 有日志管理  这里可以取消
+                //  如后期 有日志管理  这里可以取消
                 ThothOrder thothOrder = new ThothOrder();
+                thothOrder.setId(ObjectId.get().toString());
                 thothOrder.setClientFlag(users.getClientFlag());
                 thothOrder.setDataOrder(data);
                 thothOrder.setIsSend(0);
