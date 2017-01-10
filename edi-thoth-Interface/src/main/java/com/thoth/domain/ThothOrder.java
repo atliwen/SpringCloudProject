@@ -5,7 +5,6 @@ import org.springframework.data.annotation.Id;
 public class ThothOrder
 {
 
-
     @Id
     private String id;
 
@@ -14,12 +13,10 @@ public class ThothOrder
      */
     private String clientFlag;
 
-
     /**
      * 客户单号 （ 消费端 数据转换后 回填）
      */
     private String orderid;
-
 
     /**
      * 运单号  （ 消费端 数据转换后 回填）
@@ -32,14 +29,21 @@ public class ThothOrder
     private String verifyData;
 
     /**
+     *   0 等单模式 1 平常模式
+     */
+    private Integer wait;
+
+
+    /**
      * 数据转换模式   -1 旧标准模式 0 标准模式 1 自定义转换模式 2 特殊微服务模式
      */
     private Integer dataPattern;
+
     /**
      * 当前处理状态
-     * <p>
+     *
      * 0 接收数据 1 处理成功  9 thoth 处理失败 7 thoth响应 数据转换类型 8 微服务响应 数据转换类型
-     * <p>
+     *
      * 2 为从新处理
      */
     private Integer isSend;
@@ -49,12 +53,10 @@ public class ThothOrder
      */
     private RequestData dataOrder;
 
-
     /**
      * 标准数据  （ 消费端 数据转换后 回填）
      */
     private String standardData;
-
 
     /**
      * 客户服务名称
@@ -64,7 +66,6 @@ public class ThothOrder
      * 备用备注
      */
     private String remark;
-
 
     /**
      * 获取用户标识
@@ -226,16 +227,31 @@ public class ThothOrder
 
 
     /**
-     * 获取 数据转换模式  0 标准模式 1 自定义转换模式 2 特殊微服务模式
+     * 获取 数据转换模式  -1 旧标准模式 0 标准模式 1 自定义转换模式 2 特殊微服务模式
      */
     public Integer getDataPattern() {
         return this.dataPattern;
     }
 
     /**
-     * 设置 数据转换模式  0 标准模式 1 自定义转换模式 2 特殊微服务模式
+     * 设置 数据转换模式 -1 旧标准模式 0 标准模式 1 自定义转换模式 2 特殊微服务模式
      */
     public void setDataPattern(Integer dataPattern) {
         this.dataPattern = dataPattern;
+    }
+
+
+    /**
+     * 获取   0 等单模式 1 平常模式
+     */
+    public Integer getWait() {
+        return this.wait;
+    }
+
+    /**
+     * 设置   0 等单模式 1 平常模式
+     */
+    public void setWait(Integer wait) {
+        this.wait = wait;
     }
 }

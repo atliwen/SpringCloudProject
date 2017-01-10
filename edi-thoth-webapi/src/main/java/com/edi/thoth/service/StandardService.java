@@ -32,6 +32,8 @@ public class StandardService
      * @return
      */
     public String standardMode(RequestData requestData, ClientUsers user) {
+
+
         String strMd5;
         String verifyData;
         try {
@@ -49,6 +51,9 @@ public class StandardService
         Logger.debug(" 接收的MD5 是 " + verifyData.substring(4, 21) + " 生产的MD5 是 " + strMd5);
         if (verifyData.substring(4, 21) == strMd5) {
             try {
+
+                //TODO  标准模式 数据验证
+
                 dataSaveServcie.  saveDate(requestData, user);
             } catch (Exception e) {
                 return standardResponse(user.getClientFlag(), "fales", "保存数据异常");

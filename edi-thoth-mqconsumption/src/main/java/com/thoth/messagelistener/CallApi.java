@@ -11,45 +11,46 @@ import org.springframework.web.client.RestTemplate;
  * <p>Title: CallApi </p>
  * <p>@Description: 通用调用  Api  </p>
  * <p>Company:  </p>
+ *
  * @author 李文
- * @date   2016年9月18日 下午2:03:13 
+ * @date 2016年9月18日 下午2:03:13
  */
 @Scope("prototype")
 @Service
 public class CallApi
 {
 
-	@Autowired
-	RestTemplate restTemplate;
+    @Autowired
+    RestTemplate restTemplate;
 
-	private String serverID;
+    private String serverID;
 
-	public void setServerID(String serverID)
-	{
-		this.serverID = serverID;
-	}
+    public void setServerID(String serverID) {
+        this.serverID = serverID;
+    }
 
-	/**
-	 *  字符串 数据 转发
-	 * @param function   功能
-	 * @param body		   数据
-	 * @return
-	 */
-	@HystrixCommand(fallbackMethod = "bodyApiback")
-	public String bodyApi(String function, RequestData body)
-	{
-		String url = "http://" + serverID + "/" + function;
-		return restTemplate.postForEntity(url, body, String.class).getBody();
-	}
+    /**
+     * 字符串 数据 转发
+     *
+     * @param function 功能
+     * @param body     数据
+     * @return
+     */
+    @HystrixCommand(fallbackMethod = "bodyApiback")
+    public String bodyApi(String function, RequestData body) {
+        String url = "http://" + serverID + "/" + function;
+        return restTemplate.postForEntity(url, body, String.class).getBody();
+    }
 
-	/**
-	 * 断路器
-	 * @param function
-	 * @param body
-	 * @return
-	 */
-	public String bodyApiback(String function, RequestData body)
-	{
-		return "超时";
-	}
+
+    /**
+     * 断路器
+     *
+     * @param function
+     * @param body
+     * @return
+     */
+    public String bodyApiback(String function, RequestData body) {
+        return "超时";
+    }
 }

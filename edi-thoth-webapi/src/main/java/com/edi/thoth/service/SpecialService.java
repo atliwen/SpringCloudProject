@@ -38,6 +38,7 @@ public class SpecialService
 
         long a1 = System.currentTimeMillis();
         String Check = callApi.check(requestData);
+        LOGGER.info(" 微服务  "+user.getClientFlag()+" 验证数据 响应数据  "+Check);
         LOGGER.debug("<br>执行耗时 a1 : " + (System.currentTimeMillis() - a1));
 
         if (!"ok".equals(Check))// 调用 验 证 API
@@ -45,6 +46,7 @@ public class SpecialService
 
         a1 = System.currentTimeMillis();
         String dataVerification = callApi.dataVerification(requestData);
+        LOGGER.info(" 微服务  "+user.getClientFlag()+" 基础数据 验证 响应数据  "+Check);
         LOGGER.debug("<br>执行耗时 a1 : " + (System.currentTimeMillis() - a1));
 
         if (!"ok".equals(dataVerification))// 调用 验 证 API

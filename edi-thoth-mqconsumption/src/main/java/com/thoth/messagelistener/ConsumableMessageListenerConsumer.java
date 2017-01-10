@@ -5,6 +5,7 @@ import com.alibaba.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import com.alibaba.rocketmq.common.message.MessageExt;
 import com.currencyboot.service.rocketmq.messagelistener.Interface.MessageListenerConsumerInterface;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoth.domain.ResultBean;
 import com.thoth.domain.ThSnOrder;
@@ -39,6 +40,7 @@ public class ConsumableMessageListenerConsumer implements MessageListenerConsume
 
     @Autowired
     private Edi_SuNingFeignServer feignServer;
+
     @Autowired
     private CallApi callApi;
 
@@ -48,58 +50,82 @@ public class ConsumableMessageListenerConsumer implements MessageListenerConsume
         LOGGER.info("\n 当前线程是" + Thread.currentThread().getId() + "  \n 数据是" + strBody);
 
         //TODO 进行数据整理
-        ThothOrder order ;
+        ThothOrder order;
         try {
             order = jsonMapper.readValue(strBody, ThothOrder.class);
         } catch (IOException e) {
             LOGGER.error("  原始 数据转换类型 异常      数据是 " + strBody, e);
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         }
+        // 发送thoth 类
+        List<ThSnOrder> thSnOrder = null;
+        long a = System.currentTimeMillis();
+        //  数据转换成 thoth 类的字符串
+        String thSnOrders = null;
 
         // TODO   -1 旧标准模式
+        if (order.getDataPattern() == -1) {
 
 
+        }
 
         //TODO    0 标准模式数据转换
-
-
-
+        if (order.getDataPattern() == 0) {
+            try {
+                ThSnOrder thrder = jsonMapper.readValue(order.getDataOrder().getData(), ThSnOrder.class);
+                thSnOrder.add(thrder);
+            } catch (IOException e) {
+                LOGGER.error(" 微服务  " + order.getCheckID() + " " + order.getId() + " 响应 数据转换类型 异常    数据是 " + thSnOrders, e);
+                order.setRemark("  微服务响应 数据转换类型 异常");
+                order.setIsSend(8);
+                tOrder.save(order);
+                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+            }
+        }
 
         //TODO    1 自定义转换模式
 
+        if (order.getDataPattern() == 1) {
 
+
+        }
 
 
         //TODO    2 特殊微服务模式
 
+        if (order.getDataPattern() == 2) {
 
+            callApi.setServerID(order.getCheckID());
+            thSnOrders = callApi.bodyApi("data/conversion", order.getDataOrder());
+            LOGGER.info(" 微服务 " + order.getCheckID() + " " + order.getId() + " 响应 的 消息 是：   " + thSnOrders);
 
+            try {
+                JavaType javaType = jsonMapper.getTypeFactory().constructParametricType(ArrayList.class, ThSnOrder.class);
+                thSnOrder = jsonMapper.readValue(thSnOrders, javaType);
+            } catch (IOException e) {
+                LOGGER.error(" 微服务 " + order.getCheckID() + " " + order.getId() + " 响应 数据转换类型 异常    数据是 " + thSnOrders, e);
+                order.setRemark("  微服务响应 数据转换类型 " + thSnOrders);
+                order.setIsSend(8);
+                tOrder.save(order);
+                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+            }
+        }
 
-
-        callApi.setServerID(order.getCheckID());
-        String thSnOrders = callApi.bodyApi("data/conversion", order.getDataOrder());
-        LOGGER.info(" 微服务 " + order.getCheckID() + " " + order.getId() + " 响应 的 消息 是：   " + thSnOrders);
-        long a = System.currentTimeMillis();
-        ThSnOrder thSnOrder = null;
-        try {
-            thSnOrder = jsonMapper.readValue(thSnOrders, ThSnOrder.class);
-        } catch (IOException e) {
-            LOGGER.error(" 微服务 " + order.getCheckID() + " " + order.getId() + " 响应 数据转换类型 异常    数据是 " + thSnOrders, e);
-            order.setRemark("  微服务响应 数据转换类型 " + thSnOrders);
-            order.setIsSend(8);
+        if (order.getWait() == 0) {
+            order.setIsSend(2);
+            order.setRemark("等单模式");
+            // TODO 回填 客户单号   运单号 标准数据
             tOrder.save(order);
-            return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+            LOGGER.info(" 微服务 " + order.getCheckID() + " " + order.getId() + "    处理成功  等单模式 ");
         }
 
 
-        //TODO  等待重构
-        List<ThSnOrder> list = new ArrayList<>();
-        list.add(thSnOrder);
+        //TODO  调用 thoth 服务  等待重构
+
         ResultBean resultBean;
         try {
-            resultBean = feignServer.saveTask(list);
+            resultBean = feignServer.saveTask(thSnOrder);
             LOGGER.info(" 响应时间 " + (System.currentTimeMillis() - a));
-
         } catch (Exception e) {
             LOGGER.error(" 微服务 " + order.getCheckID() + " " + order.getId() + "thoth 响应 数据转换类型 异常    数据是 " + thSnOrders, e);
             order.setRemark("  thoth 响应 数据转换类型 " + thSnOrders);
