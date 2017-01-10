@@ -16,29 +16,31 @@ public class ThothOrder
 
 
     /**
-     *  客户单号 （ 消费端 数据转换后 回填）
+     * 客户单号 （ 消费端 数据转换后 回填）
      */
     private String orderid;
 
 
     /**
-     *  运单号  （ 消费端 数据转换后 回填）
+     * 运单号  （ 消费端 数据转换后 回填）
      */
     private String mailNo;
 
     /**
-     *  用户秘钥
+     * 用户秘钥
      */
     private String verifyData;
 
-
-
+    /**
+     * 数据转换模式   -1 旧标准模式 0 标准模式 1 自定义转换模式 2 特殊微服务模式
+     */
+    private Integer dataPattern;
     /**
      * 当前处理状态
-     *
-     *   0 接收数据 1 处理成功  9 thoth 处理失败 7 thoth响应 数据转换类型 8 微服务响应 数据转换类型
-     *
-     *   2 为从新处理
+     * <p>
+     * 0 接收数据 1 处理成功  9 thoth 处理失败 7 thoth响应 数据转换类型 8 微服务响应 数据转换类型
+     * <p>
+     * 2 为从新处理
      */
     private Integer isSend;
 
@@ -52,9 +54,6 @@ public class ThothOrder
      * 标准数据  （ 消费端 数据转换后 回填）
      */
     private String standardData;
-
-
-
 
 
     /**
@@ -75,8 +74,6 @@ public class ThothOrder
     public String getClientFlag() {
         return clientFlag;
     }
-
-
 
 
     /**
@@ -225,5 +222,20 @@ public class ThothOrder
      */
     public void setVerifyData(String verifyData) {
         this.verifyData = verifyData;
+    }
+
+
+    /**
+     * 获取 数据转换模式  0 标准模式 1 自定义转换模式 2 特殊微服务模式
+     */
+    public Integer getDataPattern() {
+        return this.dataPattern;
+    }
+
+    /**
+     * 设置 数据转换模式  0 标准模式 1 自定义转换模式 2 特殊微服务模式
+     */
+    public void setDataPattern(Integer dataPattern) {
+        this.dataPattern = dataPattern;
     }
 }

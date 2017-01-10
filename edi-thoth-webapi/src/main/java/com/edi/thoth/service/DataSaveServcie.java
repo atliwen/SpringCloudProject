@@ -57,6 +57,7 @@ public class DataSaveServcie
             thothOrder.setCheckID(user.getCheckID());
             thothOrder.setRemark("接收数据成功");
             thothOrder.setVerifyData(user.getVerifyData());
+            thothOrder.setDataPattern(user.getDataPattern());
             tOrder.save(thothOrder);
             // 添加MQ
             mq.send(Topic, Tags, OBJECT_MAPPER.writeValueAsString(thothOrder));

@@ -48,13 +48,33 @@ public class ConsumableMessageListenerConsumer implements MessageListenerConsume
         LOGGER.info("\n 当前线程是" + Thread.currentThread().getId() + "  \n 数据是" + strBody);
 
         //TODO 进行数据整理
-        ThothOrder order = null;
+        ThothOrder order ;
         try {
             order = jsonMapper.readValue(strBody, ThothOrder.class);
         } catch (IOException e) {
             LOGGER.error("  原始 数据转换类型 异常      数据是 " + strBody, e);
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         }
+
+        // TODO   -1 旧标准模式
+
+
+
+        //TODO    0 标准模式数据转换
+
+
+
+
+        //TODO    1 自定义转换模式
+
+
+
+
+        //TODO    2 特殊微服务模式
+
+
+
+
 
         callApi.setServerID(order.getCheckID());
         String thSnOrders = callApi.bodyApi("data/conversion", order.getDataOrder());

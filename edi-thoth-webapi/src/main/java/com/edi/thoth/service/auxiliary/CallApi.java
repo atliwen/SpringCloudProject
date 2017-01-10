@@ -5,6 +5,7 @@ import com.thoth.domain.RequestData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -53,4 +54,47 @@ public class CallApi
 	{
 		return "超时";
 	}
+
+
+
+	/**
+	 * 成功 数据响应
+	 */
+	public String success(RequestData body){
+		return bodyApi("success",body);
+	}
+
+
+	/**
+	 * 失败 数据响应
+	 * @param state   状态  0 是数据验证 失败  1 是基础数据验证失败
+	 * @param body
+	 * @return
+	 */
+	public	String failure(Integer state, RequestData body){
+		return bodyApi("failure/"+state,body);
+	}
+
+	/**
+	 * 验证数据
+	 *        对客户数据的校验
+	 *
+	 * @param body
+	 * @return ok 是成功  否则 都是失败
+	 */
+	public	String check(RequestData body){
+		return bodyApi("Check",body);
+	}
+
+	/**
+	 *  基础数据 验证
+	 *      对用户数据做基础数据验证  确保接收到的数据满足最低标准处理
+	 *
+	 * @param body
+	 * @return
+	 */
+	public	String dataVerification(@RequestBody RequestData body){
+		return bodyApi("data/verification",body);
+	}
+
 }
