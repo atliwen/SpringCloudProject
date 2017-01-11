@@ -734,7 +734,7 @@ public class ThSnOrder
 	}
 
 	/**
-	 * 设置  包裹完整
+	 * 设置  包裹完整  0-包裹不完整；1-包裹完整
 	 */
 	public void setPagefull(Integer pagefull) {
 		this.pagefull = pagefull;

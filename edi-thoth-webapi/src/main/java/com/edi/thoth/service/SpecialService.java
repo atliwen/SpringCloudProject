@@ -44,13 +44,15 @@ public class SpecialService
         if (!"ok".equals(Check))// 调用 验 证 API
             return callApi.failure(0, requestData);// 调用验证失败 API
 
-        a1 = System.currentTimeMillis();
-        String dataVerification = callApi.dataVerification(requestData);
-        LOGGER.info(" 微服务  "+user.getClientFlag()+" 基础数据 验证 响应数据  "+Check);
-        LOGGER.debug("<br>执行耗时 a1 : " + (System.currentTimeMillis() - a1));
+        //TODO   thoth  居然不需要 必须字段
 
-        if (!"ok".equals(dataVerification))// 调用 验 证 API
-            return callApi.failure(1, requestData);// 调用验证失败 API
+        //a1 = System.currentTimeMillis();
+        //String dataVerification = callApi.dataVerification(requestData);
+        //LOGGER.info(" 微服务  "+user.getClientFlag()+" 基础数据 验证 响应数据  "+Check);
+        //LOGGER.debug("<br>执行耗时 a1 : " + (System.currentTimeMillis() - a1));
+        //
+        //if (!"ok".equals(dataVerification))// 调用 验 证 API
+        //    return callApi.failure(1, requestData);// 调用验证失败 API
 
         // 保存数据
         dataSaveServcie.saveDate(requestData, user);

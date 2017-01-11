@@ -111,6 +111,7 @@ public class ConsumableMessageListenerConsumer implements MessageListenerConsume
             }
         }
 
+
         if (order.getWait() == 0) {
             order.setIsSend(2);
             order.setRemark("等单模式");
