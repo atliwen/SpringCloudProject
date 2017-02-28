@@ -6,6 +6,8 @@ Spring docker 启动
     
     docker service create --network cloud -p 9001:9001 --replicas 2 --name edithothserver localhost:5000/edi_thoth_server
     
+    docker service create --network cloud -p 9110:9110 --replicas 1 --name edithothadmin localhost:5000/edi-thoth-admin
+    
     docker service create --network cloud -p 9004:9004 --replicas 1 --name edithothconfig localhost:5000/edi_thoth_config
     
     docker service create --network cloud -p 9007:9007 --replicas 1 --name edithothzull localhost:5000/edi-thoth-zuul
