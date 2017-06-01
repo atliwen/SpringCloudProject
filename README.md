@@ -4,7 +4,7 @@ Spring docker 启动
     
     docker service create --name registry --publish 5000:5000 --mount type=bind,target=/var/lib/registry,source=/docker/ --constraint 'node.hostname==manager' --network cloud registry:2
     
-    docker service create --network cloud -p 9001:9001 --replicas 2 --name edithothserver localhost:5000/edi_thoth_server
+    docker service create --network cloud -p 9009:9009 -e server.port=9009 -e eureka.client.serviceUrl.defaultZone=http://edi:admin@192.168.99.100:9009/eureka/ --replicas 1 --name edithothserver1 localhost:5000/edi_thoth_server
     
     docker service create --network cloud -p 9110:9110 --replicas 1 --name edithothadmin localhost:5000/edi-thoth-admin
     
